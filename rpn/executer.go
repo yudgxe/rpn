@@ -71,8 +71,14 @@ func Execute[T any](tokens []*Token, values map[string]T, to toFloat64[T]) (*exe
 			}
 		}
 		if token.Kind.IsOperator() {
-			v2 := stack.Pop()
-			v1 := stack.Pop()
+			v2, err := stack.PopWithError()
+			if err != nil {
+				return nil, err
+			}
+			v1, err := stack.PopWithError()
+			if err != nil {
+				return nil, err
+			}
 			if operation, ok := opertations[token.Kind]; ok {
 				var tokenType executeTokenType
 				switch getOperationType(token.Kind) {

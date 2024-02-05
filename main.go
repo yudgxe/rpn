@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	test := "a > b"
+	test := "a > "
 	rpn, err := lrpn.NewParser(test).Parse()
 	if err != nil {
 		log.Panic(err)
@@ -27,7 +27,7 @@ func main() {
 	}
 	result, err := lrpn.Execute[int](rpn, values, func(i int) float64 { return float64(i) })
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 	fmt.Println(result)
 }
