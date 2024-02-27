@@ -30,17 +30,11 @@ type executeToken struct {
 }
 
 func (et *executeToken) IsBoolean() bool {
-	if et.kind == BOOL {
-		return true
-	}
-	return false
+	return et.kind == BOOL
 }
 
 func (et *executeToken) IsFloat() bool {
-	if et.kind == FLOAT {
-		return true
-	}
-	return false
+	return et.kind == FLOAT
 }
 
 type toFloat64[T any] func(T) float64
@@ -113,10 +107,7 @@ func boolToFloat64(condition bool) float64 {
 }
 
 func float64ToBool(value float64) bool {
-	if value == 0 {
-		return false
-	}
-	return true
+	return value != 0
 }
 
 type operationType int
